@@ -8,14 +8,18 @@
 	<link></link>
 </head>
 <body>
-	<form action="sell.php" method="post">
-		Name:  <input type="text" name="username" /><br />
-		Email: <input type="text" name="email" /><br />
-		<input type="submit" name="submit" value="Ajouter l'article" />
+	<form method="post">
+		Name:  <input type="text" name="username" enctype="multipart/form-data"/><br />
+		Description: <input type="text" name="description" /><br />
+		Price: <input type="text" name="price" /><br />
+		Picture: <input type="submit" name="picture" value="Add picture" /><br />
+		<input type="file" name="file" /><br />
+		<input type="submit" name="submit" value="Add article" />
 	</form>
 </body>
 </html>
 <?php
-echo $_REQUEST['username'];
-echo $_REQUEST['email'];
+echo $_REQUEST['username'] . "<br />";
+echo $_REQUEST['description'] . "<br />";
+echo $_REQUEST['price'] . "<br />";
 ?>
