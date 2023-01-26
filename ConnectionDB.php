@@ -8,7 +8,7 @@
 // }
 
 $mysqli = new mysqli("localhost", "root", "", "php_exam_db");
-function QueryToDB(string $query):mysqli_result
+function QueryToDB(string $query):mysqli_result|bool
 {
     global $mysqli;
     $result = $mysqli->query($query);
