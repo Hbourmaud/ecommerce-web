@@ -1,0 +1,17 @@
+<?php
+
+// How To Use:
+// include 'ConnectionDB.php';
+// $result = QueryToDB("SELECT * FROM user");
+// while($row = $result->fetch_assoc()){
+//     print_r($row);
+// }
+
+$mysqli = new mysqli("localhost", "root", "", "php_exam_db");
+function QueryToDB(string $query):mysqli_result
+{
+    global $mysqli;
+    $result = $mysqli->query($query);
+    return $result;
+}
+?>
