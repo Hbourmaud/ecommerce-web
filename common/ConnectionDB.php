@@ -1,7 +1,7 @@
 <?php
 
 // How To Use:
-// include 'ConnectionDB.php';
+// include 'common/ConnectionDB.php';
 // $result = QueryToDB("SELECT * FROM user");
 // while($row = $result->fetch_assoc()){
 //     print_r($row);
