@@ -28,6 +28,11 @@ if(!$hasArticle){ ?>
 <p><?php echo $available ?></p>
 <p>Published : <?php echo $date ?></p>
 <img src="<?php echo $picture ?>">
-
+<form method="POST">
+    <input type="submit" name="AddToCart" value="Add To Cart">
+</form>
 <?php }
+if(array_key_exists('AddToCart', $_POST) && $available != "Out of Stock"){
+    QueryToDB("INSERT INTO cart (ID_user, ID_item) VALUES (1,".$idItem.")");
+}
 ?>
