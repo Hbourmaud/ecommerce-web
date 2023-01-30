@@ -13,13 +13,14 @@
     include 'common/ConnectionDB.php';
     $cart_content = array();
     $ID_user = 1;
-    $result = QueryToDB("SELECT * FROM cart INNER JOIN item ON cart.ID_item = item.ID WHERE ID_user =".$ID_user);
+    $result = QueryToDB("SELECT link_picture,name,description,price,COUNT(item.ID) AS 'nb' FROM cart INNER JOIN item ON cart.ID_item = item.ID WHERE ID_user =".$ID_user." GROUP BY item.ID;");
     while($row = $result->fetch_assoc()){
         $content = array();
         array_push($content,$row['link_picture']);
         array_push($content,$row['name']);
         array_push($content,$row['description']);
         array_push($content,$row['price']);
+        array_push($content,$row['nb']);
         array_push($cart_content,$content);
     }
     foreach($cart_content as $item)
@@ -30,8 +31,17 @@
                 <h3><?php echo $item[1]; ?></h3>
                 <p><?php echo $item[2]; ?></p>
                 <h5><?php echo $item[3]; ?>$</h5>
+                <input type="number" id="<?php echo "in".$item[1] ?>" value="<?php echo $item[4] ?>" min="1">
+                <h5 id="<?php echo "out".$item[1] ?>"></h5>
                 <br>
             </div>
+            <script>
+                var $output = document.getElementById("<?php echo "out".$item[1] ?>");
+                (document.getElementById("<?php echo "in".$item[1] ?>")).onkeyup(function() {
+                var value = parseFloat($(this).val());
+                $output.val(value*<?php echo $item[3] ?>);
+            });
+            </script>
         <?php
     }
 ?>
