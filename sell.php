@@ -19,9 +19,14 @@
 </body>
 </html>
 <?php
+include 'ConnectionDB.php';
+$id_author = 1;
+$today = date("d/m/Y");
+
+echo QueryToDB("INSERT INTO item (name, description, price, publication_date, ID_autor, link_picture) VALUES ('brante', 'boiture neuve', 1999.00, '12/02/2023', 5, '/index')");
+
 echo $_REQUEST['username'] . "<br />";
 echo $_REQUEST['description'] . "<br />";
 echo $_REQUEST['price'] . "<br />";
-echo $today = date("d/m/Y"); 
-// +\.\d{1,2}
+echo $today = date("d/m/Y");
 ?>
