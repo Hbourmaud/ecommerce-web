@@ -1,3 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <title>Detail</title>
+</head>
+<body>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Product add to cart</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="outModal" tabindex="-1" aria-labelledby="outModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="outModal">Product actually Unavailable</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
 include 'common/ConnectionDB.php';
 
@@ -34,5 +69,20 @@ if(!$hasArticle){ ?>
 <?php }
 if(array_key_exists('AddToCart', $_POST) && $available != "Out of Stock"){
     QueryToDB("INSERT INTO cart (ID_user, ID_item) VALUES (1,".$idItem.")");
+    ?>
+    <script> 
+        const ModalOK = new bootstrap.Modal(document.getElementById('exampleModal'));
+        ModalOK.show();
+    </script>
+    <?php
+}elseif(array_key_exists('AddToCart', $_POST) && $available == "Out of Stock"){
+    ?>
+    <script> 
+        const ModalOut = new bootstrap.Modal(document.getElementById('outModal'));
+        ModalOut.show();
+    </script>
+    <?php
 }
 ?>
+</body>
+</html>
