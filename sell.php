@@ -36,20 +36,19 @@ if(isset($_FILES['file'])){
     if(in_array($extension, $extensions) && $size <= $maxSize && $error == 0){
 
         $uniqueName = uniqid('', true);
-		echo $uniqueName . '\n';
         $file = $uniqueName.".".$extension;
-		echo $file . '\n';
-        echo move_uploaded_file($tmpName, './upload/'.$file);
+        move_uploaded_file($tmpName, './img/upload/'.$file);
+		$path = "./img/upload/".$file;
+		echo $path;
     }
     else{
         echo "Une erreur est survenue";
     }
 }
 
-
 include 'ConnectionDB.php';
 $id_author = 1;
 $today = date("d/m/Y");
 
-echo QueryToDB("INSERT INTO item (name, description, price, publication_date, ID_autor, link_picture) VALUES ('brante', 'boiture neuve', 1999.00, '12/02/2023', 5, '/index')");
+echo QueryToDB("INSERT INTO item (name, description, price, publication_date, ID_autor, link_picture) VALUES ('$_REQUEST[username]', '$_REQUEST[description]', '$_REQUEST[price]', '$today', 5, '$path')");
 ?>
