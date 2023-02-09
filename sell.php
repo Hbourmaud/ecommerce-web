@@ -46,11 +46,11 @@ if(isset($_FILES['file'])){
     }
 }
 
-include 'ConnectionDB.php';
+include 'common/ConnectionDB.php';
 $id_author = 1;
 $today = date("d/m/Y");
 session_start();
-$_SESSION['login'] = $uuid;
+$uuid = $_SESSION['login'];
 
-echo QueryToDB("INSERT INTO item (name, description, price, publication_date, ID_autor, link_picture) VALUES ('$_REQUEST[username]', '$_REQUEST[description]', '$_REQUEST[price]', '$today', '$_SESSION[login]', '$path')");
+echo QueryToDB("INSERT INTO item (name, description, price, publication_date, ID_autor, link_picture) VALUES (\"".$_REQUEST['username']."\", \"".$_REQUEST['description']."\", \"".$_REQUEST['price']."\", '$today', \"".$uuid."\", '$path')");
 ?>
