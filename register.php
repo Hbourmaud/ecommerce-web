@@ -4,7 +4,7 @@
     <label for="username">username:</label>
     <input type="text" id="username" name="username"><br><br>
     <label for="password">password:</label>
-    <input type="text" id="password" name="password"><br><br>
+    <input type="password" id="password" name="password"><br><br>
     <label for="mail">email:</label>
     <input type="text" id="mail" name="mail"><br><br>
     <input type="submit" name="register" value="insert">
@@ -21,7 +21,10 @@ if(array_key_exists('register', $_POST)){
     $password = password_hash($_REQUEST['password'],PASSWORD_BCRYPT); //  hash the password in bcrypt
     $email_adress = $_REQUEST['mail'];
     $uuid = uniqid();
-
+    if (!filter_var($email_adress, FILTER_VALIDATE_EMAIL)) { //check email format
+        $emailErr = "Invalid email format";
+        exit($emailErr);
+    }
     //we will check if user is already in our db
     $select = QueryToDB("SELECT * FROM user WHERE username = '".$username."'");
     if(mysqli_num_rows($select)) {
