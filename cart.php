@@ -12,8 +12,8 @@
 <?php
     include 'common/ConnectionDB.php';
     $cart_content = array();
-    $ID_user = 1;
-    $result = QueryToDB("SELECT link_picture,name,description,price,COUNT(item.ID) AS 'nb' FROM cart INNER JOIN item ON cart.ID_item = item.ID WHERE ID_user =".$ID_user." GROUP BY item.ID;");
+    session_start();
+    $result = QueryToDB("SELECT link_picture,name,description,price,COUNT(item.ID) AS 'nb' FROM cart INNER JOIN item ON cart.ID_item = item.ID WHERE ID_user =\"".$_SESSION['login']."\" GROUP BY item.ID;");
     while($row = $result->fetch_assoc()){
         $content = array();
         array_push($content,$row['link_picture']);
