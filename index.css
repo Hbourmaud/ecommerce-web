@@ -1,0 +1,15 @@
+.box
+{
+    width: 400;
+    border: 1px solid black;
+    text-align: justify;
+    margin-left: 50px; /* Marge extérieure de 50px */
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-left: 2%;
+
+}
+.Rect{
+    flex-wrap: wrap;
+    display: flex;
+}
