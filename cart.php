@@ -13,6 +13,10 @@
     include 'common/ConnectionDB.php';
     $cart_content = array();
     session_start();
+    if($_SESSION['login'] == ""){
+        header('Location: ./login');
+        Exit();
+    }
     $result = QueryToDB("SELECT link_picture,name,description,price,COUNT(item.ID) AS 'nb' FROM cart INNER JOIN item ON cart.ID_item = item.ID WHERE ID_user =\"".$_SESSION['login']."\" GROUP BY item.ID;");
     while($row = $result->fetch_assoc()){
         $content = array();
