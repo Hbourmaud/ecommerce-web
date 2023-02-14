@@ -17,7 +17,14 @@
         header('Location: ./login');
         Exit();
     }
-    $result = QueryToDB("SELECT link_picture,name,description,price,COUNT(item.ID) AS 'nb' FROM cart INNER JOIN item ON cart.ID_item = item.ID WHERE ID_user =\"".$_SESSION['login']."\" GROUP BY item.ID;");
+
+    if(isset($_GET['deleteItem'])){
+        QueryToDB("DELETE FROM cart WHERE ID_user =\"".$_SESSION['login']."\" AND ID_item = \"".$_GET['deleteItem']."\"");
+        header('Location: ./cart');
+        Exit();
+    }
+    
+    $result = QueryToDB("SELECT link_picture,name,description,price,COUNT(item.ID) AS 'nb',item.ID AS 'itemID' FROM cart INNER JOIN item ON cart.ID_item = item.ID WHERE ID_user =\"".$_SESSION['login']."\" GROUP BY item.ID;");
     while($row = $result->fetch_assoc()){
         $content = array();
         array_push($content,$row['link_picture']);
@@ -25,8 +32,13 @@
         array_push($content,$row['description']);
         array_push($content,$row['price']);
         array_push($content,$row['nb']);
+        array_push($content,$row['itemID']);
         array_push($cart_content,$content);
     }
+    if(count($cart_content) == 0){?>
+        <p>Your cart is empty</p>
+    <?php
+    Exit();}
     foreach($cart_content as $item)
     {
         ?> 
@@ -36,16 +48,9 @@
                 <p><?php echo $item[2]; ?></p>
                 <h5><?php echo $item[3]; ?>$</h5>
                 <input type="number" id="<?php echo "in".$item[1] ?>" value="<?php echo $item[4] ?>" min="1">
-                <h5 id="<?php echo "out".$item[1] ?>"></h5>
+                <a href="<?php echo "?deleteItem=".$item[5] ?>">Remove</a>
                 <br>
             </div>
-            <script>
-                var $output = document.getElementById("<?php echo "out".$item[1] ?>");
-                (document.getElementById("<?php echo "in".$item[1] ?>")).onkeyup(function() {
-                var value = parseFloat($(this).val());
-                $output.val(value*<?php echo $item[3] ?>);
-            });
-            </script>
         <?php
     }
 ?>
