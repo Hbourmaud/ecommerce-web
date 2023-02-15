@@ -86,5 +86,15 @@
     }
 ?>
 <h2>SubTotal<?php echo " (".$numberItem." Articles) : ".$subtotal." $" ?></h2>
+<?php 
+    $resultBalance = QueryToDB("SELECT balance FROM user WHERE UUID = \"".$_SESSION['login']."\"");
+    while($rowBalance = $resultBalance->fetch_assoc()){
+        $balance=$rowBalance['balance'];
+    }
+    if($balance >= $subtotal){
+        $redirectionValidate = "./cart/validate";
+    }else{$redirectionValidate = '#';}
+?>
+<button onclick="window.location.href='<?php echo $redirectionValidate ?>'">Proceed to checkout</button>
 </body>
 </html>
