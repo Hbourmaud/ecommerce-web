@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <title>My Cart</title>
 </head>
 <body>
@@ -20,6 +21,18 @@
 
     if(isset($_GET['deleteItem'])){
         QueryToDB("DELETE FROM cart WHERE ID_user =\"".$_SESSION['login']."\" AND ID_item = \"".$_GET['deleteItem']."\"");
+        header('Location: ./cart');
+        Exit();
+    }
+    if(isset($_GET['changeQuantity']) && isset($_GET['numberToChange'])){
+        QueryToDB("DELETE FROM cart WHERE ID_user =\"".$_SESSION['login']."\" AND ID_item = \"".$_GET['changeQuantity']."\"");
+        $number = $_GET['numberToChange'];
+        if($number < 1){
+            $number = 1;
+        }
+        for ($i=0; $i < $number; $i++) {
+            QueryToDB("INSERT INTO cart (ID_user, ID_item) VALUES (\"".$_SESSION['login']."\" , \"".$_GET['changeQuantity']."\")");
+        }
         header('Location: ./cart');
         Exit();
     }
@@ -47,9 +60,23 @@
                 <h3><?php echo $item[1]; ?></h3>
                 <p><?php echo $item[2]; ?></p>
                 <h5><?php echo $item[3]; ?>$</h5>
-                <input type="number" id="<?php echo "in".$item[1] ?>" value="<?php echo $item[4] ?>" min="1">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Qty: <?php echo $item[4] ?>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="<?php echo "?changeQuantity=".$item[5] . "&numberToChange=1" ?>">1</a>
+                        <a class="dropdown-item" href="<?php echo "?changeQuantity=".$item[5] . "&numberToChange=2" ?>">2</a>
+                        <a class="dropdown-item" href="<?php echo "?changeQuantity=".$item[5] . "&numberToChange=3" ?>">3</a>
+                        <a class="dropdown-item" href="<?php echo "?changeQuantity=".$item[5] . "&numberToChange=4" ?>">4</a>
+                        <a class="dropdown-item" href="<?php echo "?changeQuantity=".$item[5] . "&numberToChange=5" ?>">5</a>
+                        <form method="GET" action="./cart">
+                            <input type="hidden" name="changeQuantity" value="<?php echo $item[5] ?>">
+                            <input name="numberToChange" class="dropdown-item" id="QuantityPersonalize" placeholder="Specify ..." type="number" min="1">
+                            <button type="submit">Update</button>
+                        </form>
+                </div>
                 <a href="<?php echo "?deleteItem=".$item[5] ?>">Remove</a>
-                <br>
             </div>
         <?php
     }
