@@ -52,6 +52,8 @@
         <p>Your cart is empty</p>
     <?php
     Exit();}
+    $subtotal = 0;
+    $numberItem = 0;
     foreach($cart_content as $item)
     {
         ?> 
@@ -79,7 +81,10 @@
                 <a href="<?php echo "?deleteItem=".$item[5] ?>">Remove</a>
             </div>
         <?php
+        $subtotal += $item[4] * $item[3];
+        $numberItem += $item[4];
     }
 ?>
+<h2>SubTotal<?php echo " (".$numberItem." Articles) : ".$subtotal." $" ?></h2>
 </body>
 </html>
