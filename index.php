@@ -2,6 +2,13 @@
 <link rel="stylesheet"type="text/css" href="index.css"/><?php
 include 'common/ConnectionDB.php';
 $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
+<?php
+    session_start();
+?>
+<form action="session_destroyer.php" method="post">
+     <input type="submit" name="logout" value="Déconnexion" />
+</form>
+
     <div class="Rect">
     <?php while($row = $result->fetch_assoc()){
 ?> 
@@ -21,7 +28,7 @@ $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
             <?php $picture = $row['link_picture'];?>
 
             <img src="<?php echo $picture ?>">
-            </form>
+            <a href="detail.php?ArticleId=<?php echo $id;?>">Details</a>
         </div>
     
         <?php }?>
