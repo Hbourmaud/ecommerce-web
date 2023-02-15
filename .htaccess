@@ -1,3 +1,5 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+RewriteRule ^cart/validate.php$ /php_exam/cart-sub/validate.php [L]
