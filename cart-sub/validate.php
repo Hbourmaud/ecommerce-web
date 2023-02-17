@@ -7,6 +7,24 @@
     <title>Checkout</title>
 </head>
 <body>
+    <?php
+        session_start();
+        if($_SESSION['login'] == "" || $_POST['toPaid'] == ""){
+            header('Location: ../login');
+            Exit();
+        }
+        include '../common/ConnectionDB.php';
+        $result = QueryToDB("SELECT balance FROM USER WHERE UUID = \"".$_SESSION['login']."\"");
+        while($row = $result->fetch_assoc()){
+            $balanceUser = $row['balance'];
+        }
+    ?>
+
+    Your actual balance : <?php echo $balanceUser ?>
+    <br>
+    Total Amount : <?php echo $_POST['toPaid'] ?>
+    <br>
+    Balance after payment : <?php echo $balanceUser - $_POST['toPaid'] ?>
     
 </body>
 </html>
