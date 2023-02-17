@@ -95,6 +95,9 @@
         $redirectionValidate = "./cart/validate";
     }else{$redirectionValidate = '#';}
 ?>
-<button onclick="window.location.href='<?php echo $redirectionValidate ?>'">Proceed to checkout</button>
+<form action="<?php echo $redirectionValidate ?>" method="POST">
+    <button type="submit">Proceed to checkout</button>
+    <input type="hidden" value="<?php echo $subtotal ?>" name="toPaid">
+</form>
 </body>
 </html>
