@@ -34,6 +34,8 @@
 </div>
 
 <?php
+session_start();
+
 include 'common/ConnectionDB.php';
 
 $idItem = htmlspecialchars($_GET["ArticleId"]);
@@ -68,7 +70,7 @@ if(!$hasArticle){ ?>
 </form>
 <?php }
 if(array_key_exists('AddToCart', $_POST) && $available != "Out of Stock"){
-    QueryToDB("INSERT INTO cart (ID_user, ID_item) VALUES (1,".$idItem.")");
+    QueryToDB("INSERT INTO cart (ID_user, ID_item) VALUES (\"".$_SESSION['login']."\" , ".$idItem.")");
     ?>
     <script> 
         const ModalOK = new bootstrap.Modal(document.getElementById('exampleModal'));
