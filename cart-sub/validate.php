@@ -19,7 +19,7 @@
             $balanceUser = $row['balance'];
         }
         if ($_POST['addressBilling'] != "") {
-            $today = date("d/m/Y");
+            $today = date("Y-m-d");
             QueryToDB("INSERT INTO invoice (ID_user, `date of a transaction`, amount, billing_adress, billing_city, billing_postal_code) VALUES (\"".$_SESSION['login']."\",\"".$today."\",\"".$_POST['toPaid']."\",\"".$_POST['addressBilling']."\",\"".$_POST['cityBilling']."\",\"".$_POST['postalBilling']."\")");
             QueryToDB("UPDATE user SET balance=".$balanceUser-$_POST['toPaid']." WHERE UUID =\"".$_SESSION['login']."\"");
             $resultStock = QueryToDB("SELECT ID_item FROM cart WHERE ID_user = \"".$_SESSION['login']."\"");
