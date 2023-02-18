@@ -17,9 +17,28 @@
 	}
 	
 	if(empty($_GET['id'])){     // isset($_GET['Id'])
-		$q = "SELECT * FROM item WHERE id = (SELECT ID FROM user WHERE uuid = '$_SESSION[login]')";
-		echo $q;
-		echo QueryToDB("SELECT * FROM item WHERE id = (SELECT ID FROM user WHERE uuid = '$_SESSION[login]')");
+		$result = QueryToDB("SELECT * FROM item WHERE id = (SELECT ID FROM user WHERE uuid = '$_SESSION[login]')");
+		// echo $q;
+		// if (mysqli_num_rows($q) > 0){
+		// 	while($rowData = mysqli_fetch_assoc($q)){
+		// 		echo $rowData["id"].'<br>';
+		// 	}
+		// }
+		// while($row = $result->fetch_assoc()){
+		// 	$name = $row['name'];
+		// 	$description = $row['description'];
+		// 	$price = $row['price'];
+		// 	$date = $row['publication_date'];
+		// 	$picture = $row['link_picture'];
+		// }
+		?>
+		<h2><?php echo $name ?></h2>
+		<p><?php echo $description ?></p>
+		<p><?php echo $price ?>$</p>
+		<p><?php echo $available ?></p>
+		<p>Published : <?php echo $date ?></p>
+		<img src="<?php echo $picture ?>">
+		<?php
 	}
 ?>
 </body>
