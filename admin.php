@@ -17,6 +17,7 @@
     }
 ?>
 <body>
-    
+    <a href="./admin/article">See Article Published</a>
+    <a href="./admin/user">See User Account</a>
 </body>
 </html>
