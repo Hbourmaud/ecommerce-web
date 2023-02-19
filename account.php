@@ -203,10 +203,10 @@
 		}
 
 		// affichage des factures
-		$result = QueryToDB("SELECT * FROM invoice WHERE UUID = (SELECT ID FROM user WHERE uuid = '$_SESSION[login]')");
+		$result = QueryToDB("SELECT * FROM invoice WHERE UUID = \"".$_SESSION['login']."\"");
 		?> <h3> Invoice : </h3> <?php
 		while($row = $result->fetch_assoc()){
-			?><p><?php echo $date = $row['date of a transaction']; ?> </p>
+			?><p><?php echo $date = $row["date of a transaction"]; ?> </p>
 			<p><?php echo $price = $row['amount']; ?>$</p>
 			<p><?php echo $billing_adress = $row['billing_adress']; ?></p>
 			<p><?php echo $billing_city = $row['billing_city']; ?></p>

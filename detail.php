@@ -16,6 +16,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Product add to cart</h1>
+        <button onclick="window.location.href='./cart'">See my Cart</button>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     </div>
@@ -94,10 +95,15 @@ if(array_key_exists('AddToCart', $_POST) && $available != "Out of Stock"){
     </script>
     <?php
 }
+$resultAdmin = QueryToDB("SELECT * FROM user WHERE uuid = \"".$_SESSION['login']."\" AND role = \"admin\"");
+$row = $resultAdmin->fetch_assoc();
+if(($id_autor == $_SESSION['login'] || $row['role'] == "admin") && $available != ""){
 ?>
+
 <form action="./edit.php" method="POST">
     <input type="hidden" name="ArticleId" value="<?php echo $idItem; ?>">
   <input type="submit" name="edit" value="EDIT" />
 </form>
+<?php } ?>
 </body>
 </html>

@@ -31,6 +31,9 @@
                     <?php $price = $row['price']; ?>
         
                     <p><?php echo $price ?>$</p>
+                    <?php $desc = $row['description']; ?>
+        
+                    <p><?php echo $desc ?></p>
         
                     <?php $date = $row['publication_date']; ?>
         
@@ -38,8 +41,8 @@
         
                     <?php $picture = $row['link_picture'];?>
         
-                    <img src="<?php echo $picture ?>">
-                    <a href="detail.php?ArticleId=<?php echo $id;?>">Details</a>
+                    <img src="../<?php echo $picture ?>">
+                    <a href="../detail.php?ArticleId=<?php echo $id;?>">Details</a>
                     <form method="POST" action="../edit">
                         <input type="submit" value="Edit/Delete" >
                         <input type="hidden" name="ArticleId" value="<?php echo $row['ID'] ?>">

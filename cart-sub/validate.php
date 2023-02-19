@@ -20,13 +20,13 @@
         }
         if ($_POST['addressBilling'] != "") {
             $today = date("Y-m-d");
-            QueryToDB("INSERT INTO invoice (ID_user, `date of a transaction`, amount, billing_adress, billing_city, billing_postal_code) VALUES (\"".$_SESSION['login']."\",\"".$today."\",\"".$_POST['toPaid']."\",\"".$_POST['addressBilling']."\",\"".$_POST['cityBilling']."\",\"".$_POST['postalBilling']."\")");
+            QueryToDB("INSERT INTO invoice (UUID, `date of a transaction`, amount, billing_adress, billing_city, billing_postal_code) VALUES (\"".$_SESSION['login']."\",\"".$today."\",\"".$_POST['toPaid']."\",\"".$_POST['addressBilling']."\",\"".$_POST['cityBilling']."\",\"".$_POST['postalBilling']."\")");
             QueryToDB("UPDATE user SET balance=".$balanceUser-$_POST['toPaid']." WHERE UUID =\"".$_SESSION['login']."\"");
-            $resultStock = QueryToDB("SELECT ID_item FROM cart WHERE ID_user = \"".$_SESSION['login']."\"");
+            $resultStock = QueryToDB("SELECT ID_item FROM cart WHERE UUID = \"".$_SESSION['login']."\"");
             while($row = $resultStock->fetch_assoc()){
                 QueryToDB("UPDATE stock SET available = available -1 WHERE ID_item = ".$row['ID_item']."");
             }
-            QueryToDB("DELETE FROM cart WHERE ID_user =\"".$_SESSION['login']."\"");
+            QueryToDB("DELETE FROM cart WHERE UUID =\"".$_SESSION['login']."\"");
             header('Location: ../index');
             Exit();
         }

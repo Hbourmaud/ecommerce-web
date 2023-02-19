@@ -15,7 +15,7 @@
 		Name:  <input type="text" name="itemname" enctype="multipart/form-data" required="required" /><br />
 		Description: <input type="text" name="description" required="required" /><br />
 		Price: <input type="number" step="0.01" name="price" placeholder="X.XX€" pattern="\d{1,5}\.[0-9]{1,2}" required="required" /><br />
-		Number: <input type="text" name="number" pattern="\d{1,4}" required="required" /><br />
+		Number: <input type="number" name="number" pattern="\d{1,4}" required="required" /><br />
 		Picture: <input type="file" name="file" /><br />
 		<input type="submit" name="submit" value="Add article" />
 	</form>
@@ -59,8 +59,8 @@ $today = date("Y-m-d");
 
 if ($_REQUEST['itemname'] != "" && $_REQUEST['description'] != "" && $_REQUEST['price'] != "" && $path != "") {
     $result = QueryToDB("INSERT INTO item (name, description, price, publication_date, UUID_autor, link_picture) VALUES (\"".$_REQUEST["itemname"]."\", \"".$_REQUEST["description"]."\", '$_REQUEST[price]', \"".$today."\", \"".$_SESSION['login']."\", '$path')");
-    $itemID = QueryToDB("SELECT ID FROM item WHERE name = \"".$_REQUEST["itemname"]."\" AND description = \"".$_REQUEST["description"]."\" AND price = \"".$_REQUEST['price']."\" AND publication_date = \"".$today."\" AND UUID_autor = \"".$UUID_autor."\" AND link_picture = \"".$path."\"");
+    $itemID = QueryToDB("SELECT ID FROM item WHERE name = \"".$_REQUEST["itemname"]."\" AND description = \"".$_REQUEST["description"]."\" AND publication_date = \"".$today."\" AND UUID_autor = \"".$UUID_autor."\" AND link_picture = \"".$path."\"");
     $row = $itemID->fetch_assoc();
-    $result1 = QueryToDB("INSERT INTO stock (ID_item, available) VALUES (\"".$row['ID']."\", '$_REQUEST[number]')");
+    $result1 = QueryToDB("INSERT INTO stock (ID_item, available) VALUES (\"".$row['ID']."\", \"".$_REQUEST["number"]."\")");
 }
 ?>
