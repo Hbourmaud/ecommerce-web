@@ -10,12 +10,12 @@
         <link rel="stylesheet" href="index.css">
     </head>
 
-    <form action="/php_exam/login" method="post">
+    <form action="/php_exam/login" method="post" class="middle">
         <label for="username">username:</label>
         <input type="text" id="username" name="username"><br><br>
         <label for="password">password:</label>
         <input type="password" id="password" name="password"><br><br>
-        <input type="submit" name="login" value="insert">
+        <input type="submit" style="margin-left: 10%" name="login" value="insert">
     </form>
 </html>
 
