@@ -7,9 +7,41 @@
     margin-top: 50px;
     margin-bottom: 50px;
     padding-left: 2%;
+    padding-right: 25%;
 
 }
-.Rect{
+.Rect
+{
     flex-wrap: wrap;
     display: flex;
+}
+body
+{
+    background-color: #7A90A4;
+}
+h3
+{
+    font-size: 50px;
+    color: #344D59;
+    margin-left: 75px;
+}
+p
+{
+    margin-left: 25px;
+    color: white;
+}
+input
+{
+    background-color: #137C8B;
+    color: white;
+}
+button
+{
+    background-color: #709CA7;
+    color: white;
+}
+.middle
+{
+    margin-left: 40%;
+    margin-top: 15%;
 }
