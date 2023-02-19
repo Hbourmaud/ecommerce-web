@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 26 jan. 2023 à 11:20
+-- Généré le : dim. 19 fév. 2023 à 18:12
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cart` (
   `ID` int(255) NOT NULL,
-  `ID_user` int(255) NOT NULL,
+  `UUID` varchar(255) NOT NULL,
   `ID_item` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -41,7 +41,7 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `invoice` (
   `ID` int(255) NOT NULL,
-  `ID_user` int(255) NOT NULL,
+  `UUID` varchar(255) NOT NULL,
   `date of a transaction` varchar(10) NOT NULL,
   `amount` float NOT NULL,
   `billing_adress` varchar(255) NOT NULL,
@@ -59,9 +59,9 @@ CREATE TABLE `item` (
   `ID` int(255) NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `price` int(255) NOT NULL,
-  `publication_date` varchar(10) NOT NULL,
-  `ID_autor` int(255) NOT NULL,
+  `price` decimal(50,0) NOT NULL,
+  `publication_date` date NOT NULL,
+  `UUID_autor` varchar(255) NOT NULL,
   `link_picture` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -85,11 +85,12 @@ CREATE TABLE `stock` (
 
 CREATE TABLE `user` (
   `ID` int(255) NOT NULL,
+  `UUID` varchar(255) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email_adress` varchar(50) NOT NULL,
-  `balance` int(255) NOT NULL,
-  `profile_picture` blob NOT NULL,
+  `balance` double NOT NULL,
+  `profile_picture` varchar(255) NOT NULL,
   `role` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -147,19 +148,19 @@ ALTER TABLE `invoice`
 -- AUTO_INCREMENT pour la table `item`
 --
 ALTER TABLE `item`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
