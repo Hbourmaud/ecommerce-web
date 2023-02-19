@@ -198,9 +198,7 @@
 			<p><?php echo $price = $row['price']; ?>$</p>
 			<p>Published : <?php echo $date = $row['publication_date']; ?></p>
 			<img src="<?php echo $picture = $row['link_picture']; ?>">
-			<form action="detail?ArticleId=$ID" method="get">
-     			<input type="submit" name="detail_page" value="detail" />
-			</form>
+			<button onclick="window.location.href='./detail?ArticleId=<?php echo $ID?>'">Detail</button>
 			<?php
 		}
 
