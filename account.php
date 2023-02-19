@@ -215,7 +215,26 @@
 		}
 	} else {    // les autres comptes
 		// affichage des informations du compte
+		$resultAdmin = QueryToDB("SELECT * FROM user WHERE uuid = \"".$_SESSION['login']."\" AND role = \"admin\"");
+		$rowAdmin = $resultAdmin->fetch_assoc();
 		$result = QueryToDB("SELECT * FROM user WHERE ID = $_GET[id]");
+		if($rowAdmin != null){
+			while($row = $result->fetch_assoc()){
+				?><p><?php echo $username = $row['username']; ?> </p>
+				<form method="post">
+					 <input type="submit" name="edit_username" value="edit your username" />
+				</form>
+				<p><?php echo $email_adress = $row['email_adress']; ?></p>
+				<form method="post">
+					 <input type="submit" name="edit_email_adress" value="edit your email adress" />
+				</form>
+				<img src="<?php echo $picture = $row['profile_picture']; ?>">
+				<form method="post">
+					 <input type="submit" name="edit_profile_picture" value="edit your profile picture" />
+				</form>
+				<?php
+			}
+		}
 		?> <h3> About the account : </h3> <?php
 		while($row = $result->fetch_assoc()){
 			?><p><?php echo $username = $row['username']; ?> </p>
