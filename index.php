@@ -13,6 +13,15 @@ if ($_SESSION['login'] != ""){?>
 </form>
 <?php
 }
+if ($_SESSION['login'] == ""){?>
+    <form action="login.php" method="post">
+    <input type="submit" name="lLOGIN" value="LOGIN" />
+    </form>
+    <form action="register.php" method="post">
+    <input type="submit" name="REGISTER" value="REGISTER" />
+    </form>
+<?php
+}
 ?>
 
 
