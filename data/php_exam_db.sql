@@ -61,7 +61,7 @@ CREATE TABLE `item` (
   `description` varchar(255) NOT NULL,
   `price` decimal(50,0) NOT NULL,
   `publication_date` date NOT NULL,
-  `UUID_autor` varchar(255) NOT NULL,
+  `ID_autor` varchar(255) NOT NULL,
   `link_picture` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
