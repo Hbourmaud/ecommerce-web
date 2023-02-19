@@ -1,6 +1,6 @@
 
 <html>
-    <form action="/php_exam/login.php" method="post">
+    <form action="/php_exam/login" method="post">
         <label for="username">username:</label>
         <input type="text" id="username" name="username"><br><br>
         <label for="password">password:</label>
@@ -11,6 +11,10 @@
 
 
 <?php
+session_start();
+if (($_SESSION['login'] != "")){
+    header('Location: index');
+}
 if(array_key_exists('login', $_POST)){
     include 'common/ConnectionDB.php';
     $username = $_REQUEST['username'];
@@ -26,7 +30,7 @@ if(array_key_exists('login', $_POST)){
         echo 'Password is valid!';
         session_start();
         $_SESSION['login'] = $uuid;
-        header('Location: index.php');
+        header('Location: index');
     }else{
         echo 'Invalid password.';
     }
