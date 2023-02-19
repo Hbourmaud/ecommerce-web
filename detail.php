@@ -44,6 +44,7 @@ if(preg_match("/^[0-9]*$/",$idItem) && $idItem != null){
     $result = QueryToDB("SELECT * FROM item INNER JOIN stock ON item.ID = stock.ID_item WHERE item.ID = ".$idItem);
 
     while($row = $result->fetch_assoc()){
+        $id_autor = $row['UUID_autor'];
         $name = $row['name'];
         $description = $row['description'];
         $price = $row['price'];
@@ -94,5 +95,9 @@ if(array_key_exists('AddToCart', $_POST) && $available != "Out of Stock"){
     <?php
 }
 ?>
+<form action="./edit.php" method="POST">
+    <input type="hidden" name="ArticleId" value="<?php echo $idItem; ?>">
+  <input type="submit" name="edit" value="EDIT" />
+</form>
 </body>
 </html>
