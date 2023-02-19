@@ -20,18 +20,18 @@
     }
 
     if(isset($_GET['deleteItem'])){
-        QueryToDB("DELETE FROM cart WHERE ID_user =\"".$_SESSION['login']."\" AND ID_item = \"".$_GET['deleteItem']."\"");
+        QueryToDB("DELETE FROM cart WHERE UUID_user =\"".$_SESSION['login']."\" AND ID_item = \"".$_GET['deleteItem']."\"");
         header('Location: ./cart');
         Exit();
     }
     if(isset($_GET['changeQuantity']) && isset($_GET['numberToChange'])){
-        QueryToDB("DELETE FROM cart WHERE ID_user =\"".$_SESSION['login']."\" AND ID_item = \"".$_GET['changeQuantity']."\"");
+        QueryToDB("DELETE FROM cart WHERE UUID_user =\"".$_SESSION['login']."\" AND ID_item = \"".$_GET['changeQuantity']."\"");
         $number = $_GET['numberToChange'];
         if($number < 1){
             $number = 1;
         }
         for ($i=0; $i < $number; $i++) {
-            QueryToDB("INSERT INTO cart (ID_user, ID_item) VALUES (\"".$_SESSION['login']."\" , \"".$_GET['changeQuantity']."\")");
+            QueryToDB("INSERT INTO cart (UUID_user, ID_item) VALUES (\"".$_SESSION['login']."\" , \"".$_GET['changeQuantity']."\")");
         }
         header('Location: ./cart');
         Exit();
