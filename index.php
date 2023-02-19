@@ -19,7 +19,7 @@ $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
     <input type="submit" name="sell" value="Sell" />
 </form>
 <?php
-}
+
 if ($_SESSION['login'] == ""){?>
     <form action="login.php" method="post">
     <input type="submit" name="lLOGIN" value="LOGIN" />
