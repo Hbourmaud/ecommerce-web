@@ -5,8 +5,9 @@ $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
 <?php
     session_start();
     error_reporting(0);
-?>
-<form action="session_destroyer" method="post">
+if ($_SESSION['login']!= ""){
+    ?>
+    <form action="session_destroyer" method="post">
     <input type="submit" name="logout" value="Logout" />
 </form>
 <form action="account" method="post">
@@ -19,6 +20,7 @@ $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
     <input type="submit" name="sell" value="Sell" />
 </form>
 <?php
+}
 
 if ($_SESSION['login'] == ""){?>
     <form action="login.php" method="post">
