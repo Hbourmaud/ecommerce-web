@@ -13,7 +13,7 @@
 <?php
 session_start();
 if (($_SESSION['login'] != "")){
-    header('Location: index.php');
+    header('Location: index');
 }
 if(array_key_exists('login', $_POST)){
     include 'common/ConnectionDB.php';
@@ -30,7 +30,7 @@ if(array_key_exists('login', $_POST)){
         echo 'Password is valid!';
         session_start();
         $_SESSION['login'] = $uuid;
-        header('Location: index.php');
+        header('Location: index');
     }else{
         echo 'Invalid password.';
     }
