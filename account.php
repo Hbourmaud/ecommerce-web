@@ -12,9 +12,6 @@
 <body>
 
 <!-- Modal -->
-<form method="post">
-     <input type="submit" name="edit" value="edit" />
-</form>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -25,16 +22,7 @@
     </div>
   </div>
 </div>
-<?php
-if(array_key_exists('edit', $_POST)){
-    ?>
-    <script> 
-        const ModalOK = new bootstrap.Modal(document.getElementById('exampleModal'));
-        ModalOK.show();
-    </script>
-    <?php
-}
-?>
+
 <?php
 	session_start();
 	include 'common/ConnectionDB.php';
@@ -42,8 +30,35 @@ if(array_key_exists('edit', $_POST)){
 		header('Location: php_exam/login');
 		Exit();
 	}
-	
+	?>
+
+	<!-- Activation Modal -->
+	<?php
+		if(array_key_exists('edit', $_POST)){
+			?>
+			<script> 
+				const ModalOK = new bootstrap.Modal(document.getElementById('exampleModal'));
+				ModalOK.show();
+			</script>
+			<?php
+		}
+	?>
+
+	<?php
 	if(empty($_GET['id'])){    // le compte connecté
+		// affichage des informations du profil
+		$result = QueryToDB("SELECT * FROM user WHERE uuid = '$_SESSION[login]'");
+		?> <h3> Your account : </h3> <?php
+		while($row = $result->fetch_assoc()){
+			?><p><?php echo $username = $row['username']; ?> </p>
+			<p><?php echo $email_adress = $row['email_adress']; ?></p>
+			<img src="<?php echo $picture = $row['profile_picture']; ?>">
+			<form method="post">
+     			<input type="submit" name="edit" value="edit" />
+			</form>
+			<?php
+		}
+
 		// affichage des articles
 		$result = QueryToDB("SELECT * FROM item WHERE id_autor = (SELECT ID FROM user WHERE uuid = '$_SESSION[login]')");
 		?> <h3> Item : </h3> <?php
