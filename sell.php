@@ -48,10 +48,10 @@ if(isset($_FILES['file'])){
 
 include 'common/ConnectionDB.php';
 $ID_autor = $_SESSION['login'];
-$today = date("d/m/Y");
+$today = date("Y-m-d");
 
-$result = QueryToDB("INSERT INTO item (name, description, price, publication_date, ID_autor, link_picture) VALUES ('$_REQUEST[itemname]', '$_REQUEST[description]', '$_REQUEST[price]', '$today', '$ID_autor', '$path')");
-$itemID = QueryToDB("SELECT ID FROM item WHERE name = '$_REQUEST[itemname]' AND description = '$_REQUEST[description]' AND price = '$_REQUEST[price]' AND publication_date = '$today' AND ID_autor = '$ID_autor' AND link_picture = '$path'");
+$result = QueryToDB("INSERT INTO item (name, description, price, publication_date, ID_autor, link_picture) VALUES ('$_REQUEST[itemname]', '$_REQUEST[description]', '$_REQUEST[price]', \"".$today."\", \"".$_SESSION['login']."\", '$path')");
+$itemID = QueryToDB("SELECT ID FROM item WHERE name = \"".$_REQUEST['itemname']."\" AND description = \"".$_REQUEST['description']."\" AND price = \"".$_REQUEST['price']."\" AND publication_date = \"".$today."\" AND ID_autor = \"".$ID_autor."\" AND link_picture = \"".$path."\"");
 $row = $itemID->fetch_assoc();
-$result1 = QueryToDB("INSERT INTO stock (ID_item, available) VALUES ('$row', '$_REQUEST[number]')");
+$result1 = QueryToDB("INSERT INTO stock (ID_item, available) VALUES (\"".$row['ID']."\", '$_REQUEST[number]')");
 ?>
