@@ -17,7 +17,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
-		<form action="action.php" method="post">
+		<form method="post">
 			Username : <input type="text" name="username" /><input type="submit" />
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -30,8 +30,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
-		<form action="action.php" method="post">
+		<form method="post">
 			Email adress : <input type="text" name="email_adress" /><input type="submit" />
+		</form>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="change_profile_picture" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
+		<form method="post">
+			Profile picture : <input type="file" name="profile_picture" /><input type="submit" />
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -66,6 +79,14 @@
 			</script>
 			<?php
 		}
+		if(array_key_exists('edit_profile_picture', $_POST)){
+			?>
+			<script> 
+				const ModalOK = new bootstrap.Modal(document.getElementById('change_profile_picture'));
+				ModalOK.show();
+			</script>
+			<?php
+		}
 	?>
 
 	<?php
@@ -83,6 +104,9 @@
      			<input type="submit" name="edit_email_adress" value="edit your email adress" />
 			</form>
 			<img src="<?php echo $picture = $row['profile_picture']; ?>">
+			<form method="post">
+     			<input type="submit" name="edit_profile_picture" value="edit your profile picture" />
+			</form>
 			<?php
 		}
 
