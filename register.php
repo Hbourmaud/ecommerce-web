@@ -12,6 +12,10 @@
 </html>
 
 <?php
+session_start();
+if (($_SESSION['login'] != "")){
+    header('Location: index.php');
+}
 if(array_key_exists('register', $_POST)){
     include 'common/ConnectionDB.php';
         
