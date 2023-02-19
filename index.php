@@ -1,5 +1,5 @@
 <html>
-<link rel="stylesheet"type="text/css" href="index.css"/><?php
+<link rel="stylesheet" type="text/css" href="index.css"/><?php
 include 'common/ConnectionDB.php';
 $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
 <?php
@@ -8,26 +8,26 @@ $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
 if ($_SESSION['login']!= ""){
     ?>
     <form action="session_destroyer" method="post">
-    <input type="submit" name="logout" value="Logout" />
-</form>
-<form action="account" method="post">
-    <input type="submit" name="account" value="Account" />
-</form>
-<form action="cart" method="post">
-    <input type="submit" name="cart" value="Cart" />
-</form>
-<form action="sell" method="post">
-    <input type="submit" name="sell" value="Sell" />
-</form>
-<?php
+        <input type="submit" name="logout" value="Logout" />
+    </form>
+    <form action="account" method="post">
+        <input type="submit" name="account" value="Account" />
+    </form>
+    <form action="cart" method="post">
+        <input type="submit" name="cart" value="Cart" />
+    </form>
+    <form action="sell" method="post">
+        <input type="submit" name="sell" value="Sell" />
+    </form>
+    <?php
 }
 
 if ($_SESSION['login'] == ""){?>
     <form action="login.php" method="post">
-    <input type="submit" name="lLOGIN" value="LOGIN" />
+        <input type="submit" name="lLOGIN" value="LOGIN" />
     </form>
     <form action="register.php" method="post">
-    <input type="submit" name="REGISTER" value="REGISTER" />
+        <input type="submit" name="REGISTER" value="REGISTER" />
     </form>
 <?php
 }
@@ -49,11 +49,11 @@ if ($_SESSION['login'] == ""){?>
         <div class="box">
             <?php $id = $row['ID'];?>
             <?php $name = $row['name']; ?>
-            <h2><?php echo $name ?></h2>
+            <h3><?php echo $name ?></h3>
             <br />
             <?php $price = $row['price']; ?>
 
-            <p><?php echo $price ?>$</p>
+            <p>Price : <?php echo $price ?>$</p>
 
             <?php $date = $row['publication_date']; ?>
 
