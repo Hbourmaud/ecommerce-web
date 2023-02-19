@@ -103,6 +103,7 @@
 			<form method="post">
      			<input type="submit" name="edit_email_adress" value="edit your email adress" />
 			</form>
+			<p> Your balance : <?php echo $balance = $row['balance']; ?></p>
 			<img src="<?php echo $picture = $row['profile_picture']; ?>">
 			<form method="post">
      			<input type="submit" name="edit_profile_picture" value="edit your profile picture" />
