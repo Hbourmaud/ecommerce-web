@@ -158,7 +158,7 @@
 				QueryToDB("UPDATE user SET profile_picture = '$path' WHERE uuid = \"".$_SESSION['login']."\"");
 			}
 			else{
-				echo "Une erreur est survenue";
+				echo "An error has occurred.";
 			}
 		}
 	?>
@@ -179,7 +179,7 @@
 			</form>
 			<p> Your balance : <?php echo $balance = $row['balance']; ?></p>
 			<form method="post">
-     			<input type="submit" name="edit_balance" value="edit your balance" />
+     			<input type="submit" name="edit_balance" value="add your balance" />
 			</form>
 			<img src="<?php echo $picture = $row['profile_picture']; ?>">
 			<form method="post">
