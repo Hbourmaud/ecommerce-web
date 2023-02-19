@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"type="text/css" href="../index.css"/>
     <title>Article Admin</title>
+    <link rel="stylesheet" href="../index.css">
 </head>
 <?php
     include '../common/ConnectionDB.php';

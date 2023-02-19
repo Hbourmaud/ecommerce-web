@@ -18,7 +18,7 @@
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
 		<form method="post">
-			Username : <input type="text" name="username" /><input type="submit" value="submit" />
+			Username : <input type="text" name="username" /><button type="submit">submit</button>
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -31,7 +31,7 @@
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
 		<form method="post">
-			Email adress : <input type="text" name="email_adress" /><input type="submit" value="submit"/>
+			Email adress : <input type="text" name="email_adress" /><button type="submit">submit</button>
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -44,7 +44,7 @@
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
 		<form method="post">
-			Balance : <input type="number" step="0.01" name="balance" /><input type="submit" value="submit" />
+			Balance : <input type="number" step="0.01" name="balance" /><button type="submit">submit</button>
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -57,7 +57,7 @@
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
 		<form method="post" enctype="multipart/form-data">
-			Profile picture : <input type="file" name="profile_picture" /><input type="submit" value="submit"/>
+			Profile picture : <input type="file" name="profile_picture" /><button type="submit">submit</button>
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -67,6 +67,7 @@
 
 <?php
 	session_start();
+	error_reporting(0);
 	include 'common/ConnectionDB.php';
 	if($_SESSION['login'] == ""){
 		header('Location: php_exam/login');
@@ -171,19 +172,19 @@
 		while($row = $result->fetch_assoc()){
 			?><p><?php echo $username = $row['username']; ?> </p>
 			<form method="post">
-     			<input type="submit" name="edit_username" value="edit your username" />
+     			<button type="submit" name="edit_username">edit your username</button>
 			</form>
 			<p><?php echo $email_adress = $row['email_adress']; ?></p>
 			<form method="post">
-     			<input type="submit" name="edit_email_adress" value="edit your email adress" />
+     			<button type="submit" name="edit_email_adress">edit your email adress</button>
 			</form>
 			<p> Your balance : <?php echo $balance = $row['balance']; ?></p>
 			<form method="post">
-     			<input type="submit" name="edit_balance" value="add your balance" />
+     			<button type="submit" name="edit_balance">add your balance</button>
 			</form>
 			<img src="<?php echo $picture = $row['profile_picture']; ?>">
 			<form method="post">
-     			<input type="submit" name="edit_profile_picture" value="edit your profile picture" />
+     			<button type="submit" name="edit_profile_picture">edit your profile picture</button>
 			</form>
 			<?php
 		}
