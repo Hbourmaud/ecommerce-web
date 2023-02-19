@@ -9,21 +9,22 @@
 </head>
 <body>
     <form action="/php_exam/index" method="post">
-        <input type="submit" name="home" value="Home" />
+        <button type="submit" name="home">Home</button>
     </form>
-	<form action="/php_exam/sell" method="post" enctype="multipart/form-data">
-		Name:  <input type="text" name="itemname" enctype="multipart/form-data" required="required" /><br />
-		Description: <input type="text" name="description" required="required" /><br />
-		Price: <input type="number" name="price" placeholder="X.XX€" pattern="\d{1,5}\.[0-9]{1,2}" required="required" /><br />
-		Number: <input type="text" name="number" pattern="\d{1,4}" required="required" /><br />
-		Picture: <input type="file" name="file" /><br />
-		<input type="submit" name="submit" value="Add article" />
+	<form action="/php_exam/sell" method="post" enctype="multipart/form-data" class="middle">
+		Name:  <input type="text" name="itemname" enctype="multipart/form-data" required="required" style="margin-bottom: 1%"/><br />
+		Description: <input type="text" name="description" required="required" style="margin-bottom: 1%"/><br />
+		Price: <input type="number" name="price" placeholder="X.XX€" pattern="\d{1,5}\.[0-9]{1,2}" required="required" style="margin-bottom: 1%"/><br />
+		Number: <input type="text" name="number" pattern="\d{1,4}" required="required" style="margin-bottom: 1%"/><br />
+		Picture: <input type="file" name="file" style="margin-bottom: 1%"/><br />
+		<button type="submit" style="margin-left: 10%; margin-top: 1%" name="submit">Add article</button>
 	</form>
 </body>
 </html>
 <?php
 
 session_start();
+error_reporting(0);
 include 'common/ConnectionDB.php';
 if($_SESSION['login'] == ""){
     header('Location: ./login');

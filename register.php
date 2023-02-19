@@ -9,7 +9,7 @@
         <title>register</title>
         <link rel="stylesheet" href="index.css">
     </head>
-<form action="/php_exam/register.php" method="post" class="register">
+<form action="/php_exam/register.php" method="post" class="middle">
     <label for="username">username:</label>
     <input type="text" id="username" name="username"><br><br>
     <label for="password">password:</label>
