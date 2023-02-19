@@ -10,7 +10,6 @@
 <?php
     include '../common/ConnectionDB.php';
     session_start();
-    $nbArticle = 2; #Number of Article to show by section
     $resultAdmin = QueryToDB("SELECT * FROM user WHERE uuid = \"".$_SESSION['login']."\" AND role = \"admin\"");
     $row = $resultAdmin->fetch_assoc();
     if($row == null){
@@ -43,7 +42,7 @@
                     <a href="detail.php?ArticleId=<?php echo $id;?>">Details</a>
                     <form method="POST" action="../edit">
                         <input type="submit" value="Edit/Delete" >
-                        <!-- Redirection vers /edit quand terminé -->
+                        <input type="hidden" name="ArticleId" value="<?php echo $row['ID'] ?>">
                     </form>
                 </div>
             
