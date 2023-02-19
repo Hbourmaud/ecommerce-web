@@ -17,26 +17,26 @@ $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
 if ($_SESSION['login']!= ""){
     ?>
     <form action="session_destroyer" method="post">
-        <input type="submit" name="logout" value="Logout" />
+        <button type="submit" name="logout">Logout</button>
     </form>
     <form action="account" method="post">
-        <input type="submit" name="account" value="Account" />
+        <button type="submit" name="account">Account</button>
     </form>
     <form action="cart" method="post">
-        <input type="submit" name="cart" value="Cart" />
+        <button type="submit" name="cart">Cart</button>
     </form>
     <form action="sell" method="post">
-        <input type="submit" name="sell" value="Sell" />
+        <button type="submit" name="sell">Sell</button>
     </form>
     <?php
 }
 
 if ($_SESSION['login'] == ""){?>
     <form action="login.php" method="post">
-        <input type="submit" name="lLOGIN" value="LOGIN" />
+        <button type="submit" name="LOGIN">Login</button>
     </form>
     <form action="register.php" method="post">
-        <input type="submit" name="REGISTER" value="REGISTER" />
+        <button type="submit" name="REGISTER">Register</button>
     </form>
     <?php
 }
@@ -62,16 +62,16 @@ if ($_SESSION['login'] == ""){?>
             <br />
             <?php $price = $row['price']; ?>
 
-            <p>Price : <?php echo $price ?>$</p>
+            <p>Price:<?php echo $price ?>$</p>
 
             <?php $date = $row['publication_date']; ?>
 
-            <p>Published : <?php echo $date ?></p>
+            <p>Published:<?php echo $date ?></p>
 
             <?php $picture = $row['link_picture'];?>
 
             <img src="<?php echo $picture ?>">
-            <a href="detail.php?ArticleId=<?php echo $id;?>">Details</a>
+            <button onclick="window.location.href='detail.php?ArticleId=<?php echo $id;?>'">Details</button>
         </div>
     
         <?php }?>
