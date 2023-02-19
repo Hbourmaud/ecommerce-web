@@ -6,7 +6,16 @@ $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
     session_start();
 ?>
 <form action="session_destroyer.php" method="post">
-     <input type="submit" name="logout" value="Déconnexion" />
+    <input type="submit" name="logout" value="Logout" />
+</form>
+<form action="account.php" method="post">
+    <input type="submit" name="account" value="Account" />
+</form>
+<form action="cart.php" method="post">
+    <input type="submit" name="cart" value="Cart" />
+</form>
+<form action="sell.php" method="post">
+    <input type="submit" name="sell" value="Sell" />
 </form>
 
     <div class="Rect">
