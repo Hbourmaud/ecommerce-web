@@ -4,6 +4,7 @@ include 'common/ConnectionDB.php';
 $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
 <?php
     session_start();
+    error_reporting(0);
 ?>
 <form action="session_destroyer" method="post">
     <input type="submit" name="logout" value="Logout" />
@@ -17,6 +18,19 @@ $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
 <form action="sell" method="post">
     <input type="submit" name="sell" value="Sell" />
 </form>
+<?php
+}
+if ($_SESSION['login'] == ""){?>
+    <form action="login.php" method="post">
+    <input type="submit" name="lLOGIN" value="LOGIN" />
+    </form>
+    <form action="register.php" method="post">
+    <input type="submit" name="REGISTER" value="REGISTER" />
+    </form>
+<?php
+}
+?>
+
 
     <div class="Rect">
     <?php while($row = $result->fetch_assoc()){
