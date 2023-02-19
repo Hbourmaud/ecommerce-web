@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : dim. 19 fév. 2023 à 18:12
--- Version du serveur : 10.4.27-MariaDB
--- Version de PHP : 8.2.0
+-- Host: 127.0.0.1
+-- Generation Time: Feb 19, 2023 at 11:59 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `php_exam_db`
+-- Database: `php_exam_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cart`
+-- Table structure for table `cart`
 --
 
 CREATE TABLE `cart` (
@@ -36,7 +36,7 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `invoice`
+-- Table structure for table `invoice`
 --
 
 CREATE TABLE `invoice` (
@@ -49,10 +49,17 @@ CREATE TABLE `invoice` (
   `billing_postal_code` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `invoice`
+--
+
+INSERT INTO `invoice` (`ID`, `UUID`, `date of a transaction`, `amount`, `billing_adress`, `billing_city`, `billing_postal_code`) VALUES
+(3, '63f2a38486dc9', '2023-02-19', 500.95, 'champs', 'paris', 75000);
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `item`
+-- Table structure for table `item`
 --
 
 CREATE TABLE `item` (
@@ -65,10 +72,17 @@ CREATE TABLE `item` (
   `link_picture` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`ID`, `name`, `description`, `price`, `publication_date`, `UUID_autor`, `link_picture`) VALUES
+(57, 'Computer', 'A simple computer', 500.95, '2023-02-19', '63f2a38486dc9', './img/upload/63f2a79b03fd08.66806070.png');
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `stock`
+-- Table structure for table `stock`
 --
 
 CREATE TABLE `stock` (
@@ -77,10 +91,17 @@ CREATE TABLE `stock` (
   `available` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `stock`
+--
+
+INSERT INTO `stock` (`ID`, `ID_item`, `available`) VALUES
+(48, 57, 19);
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -95,72 +116,80 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Index pour les tables déchargées
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`ID`, `UUID`, `username`, `password`, `email_adress`, `balance`, `profile_picture`, `role`) VALUES
+(40, '63f26b838debc', 'admin', '$2y$10$qoe03tgl8ezv06sLEyI/m.OJyZ4f9DNTHSFPRhN0Z2ZbWy8OmRhlC', 'admin@admin.com', 50, 'https://cdn.discordapp.com/attachments/905799668938723329/1068195827618697320/photo_de_rpofil.jpg', 'admin'),
+(41, '63f2a38486dc9', 'jean', '$2y$10$9Zv6E/O5kdSAS6bfDMLdC.9u/V.X88s7aAMjscrd/Huw/mXX6b.qe', 'jean@jean.com', 699.05, './img/profil_picture/63f2a41963d668.37612139.png', 'user');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `cart`
+-- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Index pour la table `invoice`
+-- Indexes for table `invoice`
 --
 ALTER TABLE `invoice`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Index pour la table `item`
+-- Indexes for table `item`
 --
 ALTER TABLE `item`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Index pour la table `stock`
+-- Indexes for table `stock`
 --
 ALTER TABLE `stock`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Index pour la table `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `cart`
+-- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `invoice`
+-- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `item`
+-- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
--- AUTO_INCREMENT pour la table `stock`
+-- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT pour la table `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
