@@ -12,13 +12,26 @@
 <body>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="change_username" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
 		<form action="action.php" method="post">
 			Username : <input type="text" name="username" /><input type="submit" />
+		</form>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="change_email_adress" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
+		<form action="action.php" method="post">
+			Email adress : <input type="text" name="email_adress" /><input type="submit" />
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -37,10 +50,18 @@
 
 	<!-- Activation Modal -->
 	<?php
-		if(array_key_exists('edit', $_POST)){
+		if(array_key_exists('edit_username', $_POST)){
 			?>
 			<script> 
-				const ModalOK = new bootstrap.Modal(document.getElementById('exampleModal'));
+				const ModalOK = new bootstrap.Modal(document.getElementById('change_username'));
+				ModalOK.show();
+			</script>
+			<?php
+		}
+		if(array_key_exists('edit_email_adress', $_POST)){
+			?>
+			<script> 
+				const ModalOK = new bootstrap.Modal(document.getElementById('change_email_adress'));
 				ModalOK.show();
 			</script>
 			<?php
@@ -54,11 +75,14 @@
 		?> <h3> Your account : </h3> <?php
 		while($row = $result->fetch_assoc()){
 			?><p><?php echo $username = $row['username']; ?> </p>
-			<p><?php echo $email_adress = $row['email_adress']; ?></p>
-			<img src="<?php echo $picture = $row['profile_picture']; ?>">
 			<form method="post">
-     			<input type="submit" name="edit" value="edit" />
+     			<input type="submit" name="edit_username" value="edit your username" />
 			</form>
+			<p><?php echo $email_adress = $row['email_adress']; ?></p>
+			<form method="post">
+     			<input type="submit" name="edit_email_adress" value="edit your email adress" />
+			</form>
+			<img src="<?php echo $picture = $row['profile_picture']; ?>">
 			<?php
 		}
 
