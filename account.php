@@ -18,7 +18,7 @@
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
 		<form method="post">
-			Username : <input type="text" name="username" /><input type="submit" />
+			Username : <input type="text" name="username" /><input type="submit" value="submit" />
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -31,7 +31,7 @@
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
 		<form method="post">
-			Email adress : <input type="text" name="email_adress" /><input type="submit" />
+			Email adress : <input type="text" name="email_adress" /><input type="submit" value="submit"/>
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -44,7 +44,7 @@
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
 		<form method="post">
-			Balance : <input type="text" name="balance" /><input type="submit" />
+			Balance : <input type="number" name="balance" /><input type="submit" value="submit" />
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -56,8 +56,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
-		<form method="post">
-			Profile picture : <input type="file" name="profile_picture" /><input type="submit" />
+		<form method="post" enctype="multipart/form-data">
+			Profile picture : <input type="file" name="profile_picture" /><input type="submit" value="submit"/>
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -107,6 +107,59 @@
 				ModalOK.show();
 			</script>
 			<?php
+		}
+		if($_POST['username'] != "") {
+			$result = QueryToDB("SELECT * FROM user WHERE username = \"".$_POST['username']."\"");
+			$row = $result->fetch_assoc();
+			if($row == null){
+				QueryToDB("UPDATE user SET username = \"".$_POST['username']."\" WHERE uuid = \"".$_SESSION['login']."\"");
+			} else {
+				echo "This username is already use.";
+			}
+		}
+		if($_POST['email_adress'] != "") {
+			if (!filter_var($_POST['email_adress'], FILTER_VALIDATE_EMAIL)) { //check email format
+				$emailErr = "Invalid email format";
+				exit($emailErr);
+			}
+			$result = QueryToDB("SELECT * FROM user WHERE email_adress = \"".$_POST['email_adress']."\"");
+			$row = $result->fetch_assoc();
+			if($row == null){
+				QueryToDB("UPDATE user SET email_adress = \"".$_POST['email_adress']."\" WHERE uuid = \"".$_SESSION['login']."\"");
+			} else {
+				echo "This email adress is already use.";
+			}
+		}
+		if($_POST['balance'] != "") {
+			if($_POST['balance'] > 0 ){
+				QueryToDB("UPDATE user SET balance = balance + \"".$_POST['balance']."\" WHERE uuid = \"".$_SESSION['login']."\"");
+			} else {
+				echo "Wrong value.";
+			}
+		}
+		if($_FILES['profile_picture'] != "") {
+			$tmpName = $_FILES['profile_picture']['tmp_name'];
+			$name = $_FILES['profile_picture']['name'];
+			$size = $_FILES['profile_picture']['size'];
+			$error = $_FILES['profile_picture']['error'];
+		
+			$tabExtension = explode('.', $name);
+			$extension = strtolower(end($tabExtension));
+		
+			$extensions = ['jpg', 'png', 'jpeg', 'gif'];
+			$maxSize = 400000;
+		
+			if(in_array($extension, $extensions) && $size <= $maxSize && $error == 0){
+		
+				$uniqueName = uniqid('', true);
+				$file = $uniqueName.".".$extension;
+				move_uploaded_file($tmpName, './img/profil_picture/'.$file);
+				$path = "./img/profil_picture/".$file;
+				QueryToDB("UPDATE user SET profile_picture = '$path' WHERE uuid = \"".$_SESSION['login']."\"");
+			}
+			else{
+				echo "Une erreur est survenue";
+			}
 		}
 	?>
 
