@@ -119,6 +119,9 @@
 			<p><?php echo $price = $row['price']; ?>$</p>
 			<p>Published : <?php echo $date = $row['publication_date']; ?></p>
 			<img src="<?php echo $picture = $row['link_picture']; ?>">
+			<form action="edit.php" method="post">
+     			<input type="submit" name="edit_page" value="edit" />
+			</form>
 			<?php
 		}
 
