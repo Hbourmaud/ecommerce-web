@@ -37,7 +37,7 @@
         Exit();
     }
     
-    $result = QueryToDB("SELECT link_picture,name,description,price,COUNT(item.ID) AS 'nb',item.ID AS 'itemID' FROM cart INNER JOIN item ON cart.ID_item = item.ID WHERE ID_user =\"".$_SESSION['login']."\" GROUP BY item.ID;");
+    $result = QueryToDB("SELECT link_picture,name,description,price,COUNT(item.ID) AS 'nb',item.ID AS 'itemID' FROM cart INNER JOIN item ON cart.ID_item = item.ID WHERE UUID_user =\"".$_SESSION['login']."\" GROUP BY item.ID;");
     while($row = $result->fetch_assoc()){
         $content = array();
         array_push($content,$row['link_picture']);
