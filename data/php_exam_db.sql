@@ -59,9 +59,9 @@ CREATE TABLE `item` (
   `ID` int(255) NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `price` decimal(50,0) NOT NULL,
+  `price` float NOT NULL,
   `publication_date` date NOT NULL,
-  `ID_autor` varchar(255) NOT NULL,
+  `UUID_autor` varchar(255) NOT NULL,
   `link_picture` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
