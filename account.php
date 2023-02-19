@@ -189,16 +189,17 @@
 		}
 
 		// affichage des articles
-		$result = QueryToDB("SELECT * FROM item WHERE id_autor = (SELECT ID FROM user WHERE uuid = '$_SESSION[login]')");
+		$result = QueryToDB("SELECT * FROM item WHERE ID_autor = (SELECT UUID FROM user WHERE uuid = '$_SESSION[login]')");
 		?> <h3> Item : </h3> <?php
 		while($row = $result->fetch_assoc()){
-			?><p><?php echo $name = $row['name']; ?> </p>
+			?><p><?php $ID = $row['ID']; ?> </p>
+			<p><?php echo $name = $row['name']; ?> </p>
 			<p><?php echo $description = $row['description']; ?></p>
 			<p><?php echo $price = $row['price']; ?>$</p>
 			<p>Published : <?php echo $date = $row['publication_date']; ?></p>
 			<img src="<?php echo $picture = $row['link_picture']; ?>">
-			<form action="edit.php" method="post">
-     			<input type="submit" name="edit_page" value="edit" />
+			<form action="detail?ArticleId=$ID" method="get">
+     			<input type="submit" name="detail_page" value="detail" />
 			</form>
 			<?php
 		}
