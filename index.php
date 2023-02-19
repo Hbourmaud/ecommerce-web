@@ -1,5 +1,6 @@
 <html>
-<link rel="stylesheet" type="text/css" href="index.css"/><?php
+<link rel="stylesheet" type="text/css" href="index.css"/>
+<?php
 include 'common/ConnectionDB.php';
 $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
 <?php
@@ -29,7 +30,7 @@ if ($_SESSION['login'] == ""){?>
     <form action="register.php" method="post">
         <input type="submit" name="REGISTER" value="REGISTER" />
     </form>
-<?php
+    <?php
 }
 ?>
 
