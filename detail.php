@@ -79,7 +79,7 @@ if(!$hasArticle){ ?>
     }
 }
 if(array_key_exists('AddToCart', $_POST) && $available != "Out of Stock"){
-    QueryToDB("INSERT INTO cart (ID_user, ID_item) VALUES (\"".$_SESSION['login']."\" , ".$idItem.")");
+    QueryToDB("INSERT INTO cart (UUID, ID_item) VALUES (\"".$_SESSION['login']."\" , ".$idItem.")");
     ?>
     <script> 
         const ModalOK = new bootstrap.Modal(document.getElementById('exampleModal'));
