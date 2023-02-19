@@ -9,14 +9,14 @@
         <title>register</title>
         <link rel="stylesheet" href="index.css">
     </head>
-<form action="/php_exam/register.php" method="post">
+<form action="/php_exam/register.php" method="post" class="register">
     <label for="username">username:</label>
     <input type="text" id="username" name="username"><br><br>
     <label for="password">password:</label>
     <input type="password" id="password" name="password"><br><br>
     <label for="mail">email:</label>
     <input type="text" id="mail" name="mail"><br><br>
-    <input type="submit" name="register" value="insert">
+    <button type="submit" style="margin-left: 10%" name="register">submit</button>
 </form>
 </html>
 
