@@ -11,7 +11,7 @@
 	<form method="post" enctype="multipart/form-data">
 		Name:  <input type="text" name="itemname" enctype="multipart/form-data" required="required" /><br />
 		Description: <input type="text" name="description" required="required" /><br />
-		Price: <input type="text" name="price" placeholder="X.XX€" pattern="\d{1,5}\.[0-9]{2,2}" required="required" /><br />
+		Price: <input type="text" name="price" placeholder="X.XX€" pattern="\d{1,5}\.[0-9]{1,2}" required="required" /><br />
 		Number: <input type="text" name="number" pattern="\d{1,4}" required="required" /><br />
 		Picture: <input type="file" name="file" /> <input type="submit" name="picture" value="Add picture" /><br />
 		<input type="submit" name="submit" value="Add article" />
