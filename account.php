@@ -46,13 +46,13 @@
 		?> <h3> About the account : </h3> <?php
 		while($row = $result->fetch_assoc()){
 			?><p><?php echo $username = $row['username']; ?> </p>
-			<p><?php echo $email_adress = $row['email_adress']; ?>$</p>
+			<p><?php echo $email_adress = $row['email_adress']; ?></p>
 			<img src="<?php echo $picture = $row['profile_picture']; ?>">
 			<?php
 		}
 
 		// affichage des articles
-		$result = QueryToDB("SELECT * FROM item WHERE id_autor = $_GET[id]");
+		$result = QueryToDB("SELECT * FROM item WHERE id_autor = (SELECT UUID FROM user WHERE id = $_GET[id])");
 		?> <h3> Item : </h3> <?php
 		while($row = $result->fetch_assoc()){
 			?><p><?php echo $name = $row['name']; ?> </p>
