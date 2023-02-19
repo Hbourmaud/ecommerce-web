@@ -5,16 +5,16 @@ $result = QueryToDB("SELECT * FROM item ORDER BY publication_date DESC");?>
 <?php
     session_start();
 ?>
-<form action="session_destroyer.php" method="post">
+<form action="session_destroyer" method="post">
     <input type="submit" name="logout" value="Logout" />
 </form>
-<form action="account.php" method="post">
+<form action="account" method="post">
     <input type="submit" name="account" value="Account" />
 </form>
-<form action="cart.php" method="post">
+<form action="cart" method="post">
     <input type="submit" name="cart" value="Cart" />
 </form>
-<form action="sell.php" method="post">
+<form action="sell" method="post">
     <input type="submit" name="sell" value="Sell" />
 </form>
 
