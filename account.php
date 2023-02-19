@@ -44,7 +44,7 @@
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Changing</h1> -->
 		<form method="post">
-			Balance : <input type="number" name="balance" /><input type="submit" value="submit" />
+			Balance : <input type="number" step="0.01" name="balance" /><input type="submit" value="submit" />
 		</form>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -189,7 +189,7 @@
 		}
 
 		// affichage des articles
-		$result = QueryToDB("SELECT * FROM item WHERE ID_autor = (SELECT UUID FROM user WHERE uuid = '$_SESSION[login]')");
+		$result = QueryToDB("SELECT * FROM item WHERE UUID_autor = (SELECT UUID FROM user WHERE uuid = '$_SESSION[login]')");
 		?> <h3> Item : </h3> <?php
 		while($row = $result->fetch_assoc()){
 			?><p><?php $ID = $row['ID']; ?> </p>
@@ -203,7 +203,7 @@
 		}
 
 		// affichage des factures
-		$result = QueryToDB("SELECT * FROM invoice WHERE ID_user = (SELECT ID FROM user WHERE uuid = '$_SESSION[login]')");
+		$result = QueryToDB("SELECT * FROM invoice WHERE UUID = (SELECT ID FROM user WHERE uuid = '$_SESSION[login]')");
 		?> <h3> Invoice : </h3> <?php
 		while($row = $result->fetch_assoc()){
 			?><p><?php echo $date = $row['date of a transaction']; ?> </p>
@@ -244,7 +244,7 @@
 		}
 
 		// affichage des articles
-		$result = QueryToDB("SELECT * FROM item WHERE id_autor = (SELECT UUID FROM user WHERE id = $_GET[id])");
+		$result = QueryToDB("SELECT * FROM item WHERE UUID_autor = (SELECT UUID FROM user WHERE id = $_GET[id])");
 		?> <h3> Item : </h3> <?php
 		while($row = $result->fetch_assoc()){
 			?><p><?php echo $name = $row['name']; ?> </p>
