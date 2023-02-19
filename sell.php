@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="index.css">
 </head>
 <body>
-	<form method="post" enctype="multipart/form-data">
+	<form action="/php_exam/sell" method="post" enctype="multipart/form-data">
 		Name:  <input type="text" name="itemname" enctype="multipart/form-data" required="required" /><br />
 		Description: <input type="text" name="description" required="required" /><br />
 		Price: <input type="text" name="price" placeholder="X.XX€" pattern="\d{1,5}\.[0-9]{1,2}" required="required" /><br />
