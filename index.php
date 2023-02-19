@@ -32,6 +32,15 @@ if ($_SESSION['login'] == ""){?>
 ?>
 
 
+<?php $resultAdmin = QueryToDB("SELECT * FROM user WHERE uuid = \"".$_SESSION['login']."\" AND role = \"admin\"");
+    $row = $resultAdmin->fetch_assoc();
+    if($row != null){
+        ?>
+            <a href="./admin">Admin Page</a>
+        <?php
+    }
+?>
+
     <div class="Rect">
     <?php while($row = $result->fetch_assoc()){
 ?> 

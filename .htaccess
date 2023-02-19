@@ -3,3 +3,5 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 RewriteRule ^cart/validate.php$ /php_exam/cart-sub/validate.php [L]
+RewriteRule ^admin/article.php$ /php_exam/admin-sub/articleAdmin.php [L]
+RewriteRule ^admin/user.php$ /php_exam/admin-sub/userAdmin.php [L]
