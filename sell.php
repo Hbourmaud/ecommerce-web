@@ -40,7 +40,7 @@ if(isset($_FILES['file'])){
     $extension = strtolower(end($tabExtension));
 
     $extensions = ['jpg', 'png', 'jpeg', 'gif'];
-    $maxSize = 400000;
+    $maxSize = 4000000;
 
     if(in_array($extension, $extensions) && $size <= $maxSize && $error == 0){
 

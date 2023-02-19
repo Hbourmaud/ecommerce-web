@@ -41,7 +41,7 @@ if(array_key_exists('register', $_POST)){
             exit('This email address is already used!');
         }else{
             // We are going to insert the data into our db
-            QueryToDB("INSERT INTO user (UUID, username, password, email_adress, profile_picture, role) VALUES ('$uuid','$username', '$password','$email_adress', 'https://cdn.discordapp.com/attachments/905799668938723329/1068195827618697320/photo_de_rpofil.jpg', 'user')");
+            QueryToDB("INSERT INTO user (UUID, username, password, email_adress, profile_picture, role) VALUES ('$uuid','$username', '$password','$email_adress', './img/profil_picture/63f2a41963d668.37612139.png', 'user')");
             session_start();
             $_SESSION['login'] = $uuid;
             header('Location: index');
