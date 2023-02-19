@@ -12,6 +12,10 @@
 </html>
 
 <?php
+session_start();
+if (($_SESSION['login'] != "")){
+    header('Location: index');
+}
 if(array_key_exists('register', $_POST)){
     include 'common/ConnectionDB.php';
         
@@ -39,7 +43,7 @@ if(array_key_exists('register', $_POST)){
             QueryToDB("INSERT INTO user (UUID, username, password, email_adress, profile_picture, role) VALUES ('$uuid','$username', '$password','$email_adress', 'https://cdn.discordapp.com/attachments/905799668938723329/1068195827618697320/photo_de_rpofil.jpg', 'user')");
             session_start();
             $_SESSION['login'] = $uuid;
-            header('Location: index.php');
+            header('Location: index');
         }
     }
 }
